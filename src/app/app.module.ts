@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login/login-page.component';
 import { RegisterComponent } from './register/register.component';
 import { CreateComponent } from './create/create.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import { HeaderComponent } from './header/header.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

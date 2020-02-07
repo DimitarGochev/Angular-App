@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { Post } from '../post.model';
 import { RequestsService } from '../requests.service';
-import { Get } from '../get.model';
+import { UsersPage } from '../users-page.model';
 
 @Component({
   selector: 'app-create',

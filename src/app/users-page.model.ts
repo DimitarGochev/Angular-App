@@ -1,9 +1,9 @@
-import { Data } from './get-page.model';
+import { User } from './user.model';
 
-export interface Get {
+export interface UsersPage {
     page: number;
     per_page: number;
     total: number;
     total_pages: number;
-    data: Data[];
+    data: User[];
 }

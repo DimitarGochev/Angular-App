@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Get } from '../get.model';
-import { Subscription } from 'rxjs';
+import { UsersPage } from '../users-page.model';
+import { Subscription, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RequestsService } from '../requests.service';
-import { Data } from '../get-page.model';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-users',
@@ -11,7 +11,8 @@ import { Data } from '../get-page.model';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  loadedPosts: Get[] = [];
+  loadedPosts: User[] = [];
+  users$: Observable<User[]>;
   isFetching = false;
   error = null;
   private errorSub: Subscription;
@@ -19,21 +20,25 @@ export class UsersComponent implements OnInit {
   constructor(private http: HttpClient, private requestsService: RequestsService) {}
 
   ngOnInit() {
-    this.errorSub = this.requestsService.error.subscribe(errorMessage => {
-      this.error = errorMessage;
-    });
+    this.users$ = this.requestsService.get();
 
-    this.isFetching = true;
-    this.requestsService.get().subscribe(
-      posts => {
-        this.isFetching = false;
-        this.loadedPosts = posts;
-        console.log(posts);
-      },
-      error => {
-        this.error = error.message;
-      }
-    );
+
+
+    // this.errorSub = this.requestsService.error.subscribe(errorMessage => {
+    //   this.error = errorMessage;
+    // });
+
+    // this.isFetching = true;
+    // this.requestsService.get().subscribe(
+    //   posts => {
+    //     this.isFetching = false;
+    //     this.loadedPosts = posts;
+    //     console.log(posts);
+    //   },
+    //   error => {
+    //     this.error = error.message;
+    //   }
+    // );
   } 
 
 }

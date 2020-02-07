@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
 import { Post } from './post.model';
-import { Get } from './get.model';
+import { UsersPage } from './users-page.model';
 import { RegisterData } from './register.model';
+import { RegisterResult } from './register-result.model';
+import { CreateResult } from './create-result.model';
+import { UpdateResult } from './update-result.model';
 
 @Injectable({ providedIn: 'root' })
 export class RequestsService {
@@ -20,12 +23,12 @@ export class RequestsService {
         'https://reqres.in/api/users?page=1'
       )
       .pipe(
-        map(responseData => {
-          const postsArray= [];
-          for (const key in responseData) {
-              postsArray.push(responseData[key]);
-          }
-          return postsArray;
+        map((responseData: UsersPage) => {
+          // const postsArray= [];
+          // for (const key in responseData) {
+          //     postsArray.push(responseData[key]);
+          // }
+          return responseData.data;
         }),
         catchError(errorRes => {
           // Send to analytics server
@@ -41,48 +44,24 @@ export class RequestsService {
   }
   
   register(email: string, password: string) {
-    const data: RegisterData = {email: email, password: password};
-    this.http.post('https://reqres.in/api/register', data)
-    .subscribe(responceData => 
-      { console.log(responceData); },
-       error => {
-      this.error.next(error.message);
-                }
-    );
+    const data: RegisterData = {email, password};
+    return this.http.post<RegisterResult>('https://reqres.in/api/register', data)
+    .toPromise();
   }
    
   login(email: string, password: string) {
     const data: RegisterData = {email: email, password: password};
-    this.http.post('https://reqres.in/api/login', data)
-    .subscribe(responceData => 
-      { console.log(responceData); },
-       error => {
-      this.error.next(error.message);
-                }
-    );
+    return this.http.post<{token: string}>('https://reqres.in/api/login', data);
   }
 
   create(name: string, job: string) {
     const data: Post = {name: name, job: job};
-    this.http.post('https://reqres.in/api/users', data)
-    .subscribe(responceData => 
-      { console.log(responceData); },
-       error => {
-      this.error.next(error.message);
-                }
-    );
+   return this.http.post<CreateResult>('https://reqres.in/api/users', data, {headers: new HttpHeaders({'Authorization': 'username:password'})} ).toPromise();
   }
 
-  update(name:string, job:string)
-  {
+  update(name:string, job:string) {
     const data: Post = {name: name, job: job};
-    this.http.put('https://reqres.in/api/users/1', data)
-    .subscribe(responceData => 
-      { console.log(responceData); },
-       error => {
-      this.error.next(error.message);
-                }
-    );          
+    return this.http.put<UpdateResult>('https://reqres.in/api/users/1', data);      
   }
     
 }

@@ -16,9 +16,9 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLogin(data: RegisterData)
+  async onLogin(data: RegisterData)
   {
-    this.registerService.login(data.email, data.password);
+   const response = await this.registerService.login(data.email, data.password).toPromise();
   }
 
 }
