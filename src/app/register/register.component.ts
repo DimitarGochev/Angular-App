@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterData } from '../register.model';
+import { RegisterData } from '../models/register.model';
 import { HttpClient } from '@angular/common/http';
 import { RequestsService } from '../requests.service';
+import { RegisterResult } from '../models/register-result.model';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,7 @@ import { RequestsService } from '../requests.service';
 })
 export class RegisterComponent implements OnInit {
 
+
   constructor(private http: HttpClient, private registerService: RequestsService) { }
 
   ngOnInit() {
@@ -17,6 +19,6 @@ export class RegisterComponent implements OnInit {
 
   onRegister(data: RegisterData)
   {
-    this.registerService.register(data.email, data.password);
+  this.registerService.register(data.email, data.password);
   }
 }

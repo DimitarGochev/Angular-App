@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 //import { map } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
-import { Post } from '../post.model';
+import { Post } from '../models/post.model';
 import { RequestsService } from '../requests.service';
-import { UsersPage } from '../users-page.model';
+import { CreateResult } from '../models/create-result.model';
 
 @Component({
   selector: 'app-create',
@@ -15,6 +15,8 @@ import { UsersPage } from '../users-page.model';
 export class CreateComponent  implements OnInit {
   error = null;
   private errorSub: Subscription;
+  createResponse: CreateResult;
+
 
   constructor(private http: HttpClient, private requestsService: RequestsService) {}
 
@@ -24,9 +26,9 @@ export class CreateComponent  implements OnInit {
     });
   }
 
-  onCreate(data: Post) {
+ async onCreate(data: Post) {
     // Send Http request
-    this.requestsService.create(data.name, data.job);
+  this.createResponse = await this.requestsService.create(data.name, data.job);
   }
 
 }

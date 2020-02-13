@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { RequestsService } from '../requests.service';
-import { RegisterData } from '../register.model';
+import { RegisterData } from '../models/register.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -10,15 +11,27 @@ import { RegisterData } from '../register.model';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+   error: string;
 
-  constructor(private http: HttpClient, private registerService: RequestsService) { }
+  constructor(private router: Router, private registerService: RequestsService) { }
 
   ngOnInit() {
   }
 
-  async onLogin(data: RegisterData)
-  {
-   const response = await this.registerService.login(data.email, data.password).toPromise();
+  onLogin(data: RegisterData) {
+    this.registerService.login(data.email, data.password).subscribe(
+      resData => {
+        this.router.navigateByUrl("/users");
+      } ,
+      errorResponse => {
+        this.error = errorResponse.error.error;
+      }
+    )
   }
+
+  // async onLogin(data: RegisterData)
+  // {
+  //   this.response = await this.registerService.login(data.email, data.password).toPromise();
+  // }
 
 }
