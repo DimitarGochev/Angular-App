@@ -1,18 +1,19 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <div class="col-xs-4">
             <form #postForm="ngForm" (ngSubmit)="onRegister(postForm.value)">
                 <div id="user-data">
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="text" id="email" class="form-control" required ngModel name="email">
+                        <input type="text" id="email" class="form-control" placeholder="Enter email" required ngModel name="email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" id="password" class="form-control" required ngModel name="password">
+                        <input type="text" id="password" class="form-control" placeholder="Enter password" required ngModel name="password">
                     </div>
                 </div>
+                <p style="color: red;"> {{ error }}</p>
                 <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid"> Register </button>
             </form>
         </div>

@@ -21,12 +21,12 @@ export class UpdateUserComponent implements OnInit {
     }
     catch {
       alert("User not found!");
-    }
+    } 
   }
     
   onUpdate(data: Post)
   {
-    this.requestsService.update(data.name, data.job);
+    this.requestsService.update(data.name, data.job, this.user.id);
   }
 
 }

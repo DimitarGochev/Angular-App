@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  loadedPosts: User[] = [];
+  currentPage: UsersPage;
   //users$: Observable<User[]>;
   isFetching = false;
   error = null;
@@ -33,8 +33,7 @@ export class UsersComponent implements OnInit {
     this.requestsService.get(this.page).subscribe(
       posts => {
         this.isFetching = false;
-        this.loadedPosts = posts;
-        console.log(posts);
+        this.currentPage = posts;
       },
       error => {
         this.error = error.message;
@@ -45,7 +44,7 @@ export class UsersComponent implements OnInit {
      this.requestsService.delete(userNum).subscribe(
        () => {
 
-         this.loadedPosts.splice(userNum, 1);
+         this.currentPage.data.splice(userNum, 1);
        }
      )
    }
@@ -56,7 +55,7 @@ export class UsersComponent implements OnInit {
     this.requestsService.get(page).subscribe(
       posts => {
         this.isFetching = false;
-        this.loadedPosts = posts;
+        this.currentPage = posts;
       },
       error => {
         this.error = error.message;

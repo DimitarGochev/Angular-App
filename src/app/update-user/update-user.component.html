@@ -1,4 +1,4 @@
-<div *ngIf = "user" class="container">
+<!-- <div *ngIf = "user" class="container">
     <div class="row">
       <div class="col-xs-12 col-md-6 col-md-offset-3">
         <form #postForm="ngForm" (ngSubmit)="onUpdate(postForm.value)">
@@ -16,4 +16,11 @@
         </form>
         <button class="btn btn-success" type="button" style="margin-top: 2px;" routerLink="/users">Back to list</button>
       </div>
+    </div> -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <app-user-form [createMode]="false" [user]="user"></app-user-form>
     </div>
+  </div>
+</div>

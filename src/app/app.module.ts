@@ -12,6 +12,7 @@ import { UsersComponent } from './users/users.component';
 import { HeaderComponent } from './header/header.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { AuthInterceptorService } from './auth-interceptor.service';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AuthInterceptorService } from './auth-interceptor.service';
     UsersComponent,
     HeaderComponent,
     UpdateUserComponent,
+    UserFormComponent,
   ],
   imports: [
     BrowserModule,

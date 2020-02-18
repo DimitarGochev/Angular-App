@@ -3,6 +3,7 @@ import { RegisterData } from '../models/register.model';
 import { HttpClient } from '@angular/common/http';
 import { RequestsService } from '../requests.service';
 import { RegisterResult } from '../models/register-result.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,15 +11,23 @@ import { RegisterResult } from '../models/register-result.model';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  error: string;
 
-
-  constructor(private http: HttpClient, private registerService: RequestsService) { }
+  constructor(private router: Router, private registerService: RequestsService) { }
 
   ngOnInit() {
   }
 
   onRegister(data: RegisterData)
   {
-  this.registerService.register(data.email, data.password);
+  this.registerService.register(data.email, data.password).subscribe(
+    resData => {
+      alert("Registration successful");
+      this.router.navigateByUrl("/");
+    } ,
+    errorResponse => {
+      this.error = errorResponse.error.error;
+    }
+  )
   }
 }

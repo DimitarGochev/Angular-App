@@ -1,5 +1,29 @@
-<div>
-  <a routerLink = "/"> <h3>REQ | RES</h3> </a>
-</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a routerLink="/" class="navbar-brand">REQ | RES</a>
+    </div>
 
-<hr>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"  *ngIf="isAuthenticated">
+          <a routerLink="/users">All users</a>
+        </li>
+        <li routerLinkActive="active" *ngIf="isAuthenticated">
+          <a routerLink="/create-user">Create new user</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="isAuthenticated">
+          <a style="cursor: pointer;" (click)="onLogout()">Logout</a>
+        </li>
+        <li class="dropdown" appDropdown *ngIf="isAuthenticated">
+          <a style="cursor: pointer;" class="dropdown-toggle" role="button"
+            >{{ userEmail }} <span class="caret"></span
+          ></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

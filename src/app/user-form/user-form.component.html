@@ -1,0 +1,14 @@
+
+        <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm.value)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)] = "user.first_name" name="name" />
+          </div>
+          <div class="form-group">
+            <label for="content">Job</label>
+            <input type="text" class="form-control" id="content" required ngModel name="content" />
+          </div>
+          <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid" (click) = "postForm.reset()">
+           {{createMode ? "Create" : "Update"}} 
+          </button>
+        </form>
