@@ -1,7 +1,6 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-//import { map } from 'rxjs/operators';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription} from 'rxjs';
 
 import { Userdata } from '../models/user-data.model';
 import { RequestsService } from '../requests.service';
@@ -29,9 +28,7 @@ export class CreateComponent implements OnInit {
   }
 
   async onCreate(data: Userdata) {
-    // Send Http request
     this.createResponse = await this.requestsService.create(data.name, data.job).toPromise();
-    console.log(this.createResponse);
     this.userForm.resetForm();
   }
 

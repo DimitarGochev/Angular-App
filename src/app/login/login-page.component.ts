@@ -26,10 +26,4 @@ export class LoginPageComponent implements OnInit {
       }
     )
   }
-
-  // async onLogin(data: RegisterData)
-  // {
-  //   this.response = await this.registerService.login(data.email, data.password).toPromise();
-  // }
-
 }

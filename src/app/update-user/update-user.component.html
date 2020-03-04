@@ -1,26 +1,7 @@
-<!-- <div *ngIf = "user" class="container">
-    <div class="row">
-      <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <form #postForm="ngForm" (ngSubmit)="onUpdate(postForm.value)">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)] = "user.first_name" name="name" />
-          </div>
-          <div class="form-group">
-            <label for="content">Job</label>
-            <input type="text" class="form-control" id="content" required ngModel name="content" />
-          </div>
-          <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">
-            Submit
-          </button>
-        </form>
-        <button class="btn btn-success" type="button" style="margin-top: 2px;" routerLink="/users">Back to list</button>
-      </div>
-    </div> -->
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <app-user-form [user]="user">Update</app-user-form>
+      <app-user-form #userForm [user]="user" (submited)=onUpdate($event)>Update</app-user-form>
       <p *ngIf="response">
         Updated at {{response.updatedAt}}
       </p>

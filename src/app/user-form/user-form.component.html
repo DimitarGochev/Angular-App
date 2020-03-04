@@ -8,7 +8,6 @@
     <input type="text" class="form-control" id="content" required ngModel name="content" />
   </div>
   <button class="btn btn-primary" type="submit" [disabled]="!postForm.valid">
-    <!-- {{createMode ? "Create" : "Update"}}  -->
     <ng-content></ng-content>
   </button>
 </form>

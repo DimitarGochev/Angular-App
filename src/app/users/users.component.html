@@ -21,6 +21,6 @@
         <h1>An Error Occurred!</h1>
         <p>{{ error }}</p>
       </div>
-      <button class = "btn btn-link" *ngFor = "let page of [].constructor(currentPage.total_pages), let i = index" (click) = "changePage(i+1)">Page {{i+1}}</button>
+      <button class = "btn btn-link" *ngFor = "let page of [].constructor(currentPage.total_pages), let i = index" (click) = "changePage(i)">Page {{i+1}}</button>
     </div>
   </div>

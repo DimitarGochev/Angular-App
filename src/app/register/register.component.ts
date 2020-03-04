@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterData } from '../models/register.model';
-import { HttpClient } from '@angular/common/http';
 import { RequestsService } from '../requests.service';
-import { RegisterResult } from '../models/register-result.model';
 import { Router } from '@angular/router';
 
 @Component({

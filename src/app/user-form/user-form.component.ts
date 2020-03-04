@@ -14,8 +14,8 @@ export class UserFormComponent implements OnInit {
   @Output() submited = new EventEmitter<Userdata>();
   @Input() user: User = new User();
   @ViewChild('postForm', { static: true }) private postForm: NgForm;
+  
   constructor(private route: ActivatedRoute) { }
-
 
   ngOnInit() {
   }

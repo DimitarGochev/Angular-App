@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { map, catchError, tap } from 'rxjs/operators';
-import { Subject, throwError, BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
 
 import { Userdata } from './models/user-data.model';
 import { UsersPage } from './models/users-page.model';
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class RequestsService {
   error = new Subject<string>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
 
   getPage(pageNum: string) {
@@ -28,10 +28,6 @@ export class RequestsService {
       )
       .pipe(
         map((responseData: UsersPage) => {
-          // const postsArray= [];
-          // for (const key in responseData) {
-          //     postsArray.push(responseData[key]);
-          // }
           return responseData;
         }),
         catchError(errorRes => {

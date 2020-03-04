@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { Userdata } from '../models/user-data.model';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user.model';
 import { UpdateResult } from '../models/update-result.model';
+import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
   selector: 'app-update-user',
@@ -11,8 +12,10 @@ import { UpdateResult } from '../models/update-result.model';
   styleUrls: ['./update-user.component.css']
 })
 export class UpdateUserComponent implements OnInit {
-  user: User;
+  user: User ;
   response: UpdateResult;
+  @ViewChild('userForm', { static: true }) userForm: UserFormComponent;
+
   constructor(private route: ActivatedRoute, private requestsService: RequestsService) { }
 
   async ngOnInit() {
@@ -28,6 +31,7 @@ export class UpdateUserComponent implements OnInit {
  async onUpdate(data: Userdata)
   {
     this.response = await this.requestsService.update(data.name, data.job, this.user.id).toPromise();
+    this.userForm.resetForm();
   }
 
 }

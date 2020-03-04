@@ -1,7 +1,8 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a routerLink="/" class="navbar-brand">REQ | RES</a>
+      <a *ngIf="!isAuthenticated" routerLink="/" class="navbar-brand">REQ | RES</a>
+      <a *ngIf="isAuthenticated" class="navbar-brand">REQ | RES</a>
     </div>
 
     <div class="collapse navbar-collapse" *ngIf="isAuthenticated">
