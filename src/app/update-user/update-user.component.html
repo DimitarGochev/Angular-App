@@ -20,7 +20,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <app-user-form [createMode]="false" [user]="user"></app-user-form>
+      <app-user-form [user]="user">Update</app-user-form>
+      <p *ngIf="response">
+        Updated at {{response.updatedAt}}
+      </p>
     </div>
   </div>
 </div>

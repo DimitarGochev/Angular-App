@@ -30,7 +30,7 @@ export class UsersComponent implements OnInit {
     });
 
     this.isFetching = true;
-    this.requestsService.get(this.page).subscribe(
+    this.requestsService.getPage(this.page).subscribe(
       posts => {
         this.isFetching = false;
         this.currentPage = posts;
@@ -51,8 +51,9 @@ export class UsersComponent implements OnInit {
 
 
   changePage(page: string) {
+    
     this.isFetching = true;
-    this.requestsService.get(page).subscribe(
+    this.requestsService.getPage(page).subscribe(
       posts => {
         this.isFetching = false;
         this.currentPage = posts;

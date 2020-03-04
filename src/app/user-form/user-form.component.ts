@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Post } from '../models/post.model';
+import { Userdata } from '../models/user-data.model';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../models/user.model';
 
@@ -10,8 +10,7 @@ import { User } from '../models/user.model';
 })
 export class UserFormComponent implements OnInit {
  
-  @Output() submited = new EventEmitter<Post>();
-  @Input() createMode: boolean = true;
+  @Output() submited = new EventEmitter<Userdata>();
   @Input() user: User = new User();
   constructor(private route: ActivatedRoute) { }
   
@@ -19,7 +18,7 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
   }
   
-  onSubmit(data: Post)
+  onSubmit(data: Userdata)
   {
     this.submited.emit({name: data.name, job: data.job}); 
   }

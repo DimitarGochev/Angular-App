@@ -3,12 +3,17 @@
       <p *ngIf="currentPage && currentPage.data.length < 1 && !isFetching">No users available!</p>
       <ul class="list-group"  *ngIf="currentPage && currentPage.data.length >= 1 && !isFetching">
         <li class="list-group-item" *ngFor="let user of currentPage.data; let i = index">
-         <p>
+         <div style = 'display: flex;
+         justify-content: space-between;'>
+           <div>
            <img src= {{user.avatar}} alt="userImg" width="50" height="50">
            {{ user.first_name }} {{user.last_name}} 
-          <button class = "btn btn-danger" style="float: right; margin-left:5px;" (click) = "onDelete(i)">Delete</button> 
-          <button class = "btn btn-primary" style="float: right;" (click) = "onUpdate(user.id)">Update</button>
-        </p>
+          </div>
+          <div>
+          <button class = "btn btn-danger"  (click) = "onDelete(i)"> Delete </button> 
+          <button class = "btn btn-primary" style = "margin-left: 5px;" (click) = "onUpdate(user.id)"> Update </button>
+        </div>
+         </div>
         </li>
       </ul>
       <p *ngIf="isFetching && !error">Loading...</p>

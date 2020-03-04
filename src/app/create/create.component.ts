@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 //import { map } from 'rxjs/operators';
 import { Subscription, Observable } from 'rxjs';
 
-import { Post } from '../models/post.model';
+import { Userdata } from '../models/user-data.model';
 import { RequestsService } from '../requests.service';
 import { CreateResult } from '../models/create-result.model';
 
@@ -26,9 +26,9 @@ export class CreateComponent  implements OnInit {
     });
   }
 
- async onCreate(data: Post) {
+ async onCreate(data: Userdata) {
     // Send Http request
-  this.createResponse = await this.requestsService.create(data.name, data.job);
+  this.createResponse = await this.requestsService.create(data.name, data.job).toPromise();
   }
 
 }

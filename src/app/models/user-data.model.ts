@@ -1,4 +1,4 @@
-export interface Post {
+export interface Userdata {
     name: string;
     job: string;
   }

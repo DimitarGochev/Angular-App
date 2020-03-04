@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestsService } from '../requests.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   private userSub: Subscription;
   userEmail: string = "";
 
-  constructor(private requestsService: RequestsService) { }
+  constructor(private requestsService: AuthService) { }
 
   ngOnInit() {
     this.userSub = this.requestsService.user.subscribe(user => {

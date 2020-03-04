@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { RequestsService } from '../requests.service';
 import { RegisterData } from '../models/register.model';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
    error: string;
 
-  constructor(private router: Router, private registerService: RequestsService) { }
+  constructor(private router: Router, private registerService: AuthService) { }
 
   ngOnInit() {
   }
